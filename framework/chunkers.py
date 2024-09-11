@@ -22,22 +22,6 @@ class HalfChunker(BaseChunker):
         else:
             return x1, x2
     
-    def inverse(self, y):
-        """
-        Combine two tensors back into a single tensor by concatenating along the feature dimension.
-        
-        Args:
-            y (Tuple[Tensor, Tensor]): Tuple of two tensors.
-
-        Returns:
-            Tensor: Combined tensor.
-        """
-        y1, y2 = y
-        if self.permute:
-            return torch.cat((y2, y1), dim=1)
-        else:
-            return torch.cat((y1, y2), dim=1)
-    
     def invert(self, y1, y2):
         """
         Combine two tensors into one by concatenating along the feature dimension.
@@ -76,31 +60,6 @@ class OddEvenChunker(BaseChunker):
             return x_odd, x_even
         else:
             return x_even, x_odd
-    
-    def inverse(self, y):
-        """
-        Combine odd and even indexed tensors back into a single tensor by interleaving the features.
-        
-        Args:
-            y (Tuple[Tensor, Tensor]): Tuple of odd and even indexed tensors.
-
-        Returns:
-            Tensor: Combined tensor.
-        """
-        y_odd, y_even = y
-        batch_size = y_odd.size(0)
-        num_features = y_even.size(1) + y_odd.size(1)
-        
-        y_combined = torch.empty((batch_size, num_features), device=y_even.device, dtype=y_even.dtype)
-        
-        if self.permute:
-            y_combined[:, 0::2] = y_even  # Even positions
-            y_combined[:, 1::2] = y_odd   # Odd positions
-        else:
-            y_combined[:, 0::2] = y_odd   # Odd positions
-            y_combined[:, 1::2] = y_even  # Even positions
-
-        return y_combined
     
     def invert(self, y1, y2):
         """

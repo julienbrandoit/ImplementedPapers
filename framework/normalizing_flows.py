@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 
 class NormalizingFlow(nn.Module):
-    def __init__(self, layers, latent_dim, latent_distribution, forward_transform=None, inverse_transform=None, device=None):
+    def __init__(self, layers, latent_dim, latent_distribution, device=None):
         """
         Initialize the normalizing flow model.
         
@@ -18,11 +18,10 @@ class NormalizingFlow(nn.Module):
         self.layers = nn.ModuleList(layers)
         self.latent_dim = latent_dim
         self.latent_distribution = latent_distribution
-        self.forward_transform = forward_transform
-        self.inverse_transform = inverse_transform
         
         if device is None:
             device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
         self.device = device
         self.to(device)
         
@@ -40,12 +39,15 @@ class NormalizingFlow(nn.Module):
             Tuple[Tensor, Tensor]: Transformed tensor and the log determinant of the Jacobian.
         """
         log_det_jacobian = 0
-        if self.forward_transform:
-            x = self.forward_transform(x)
         for layer in self.layers:
-            x = layer(x)
-            log_det_jacobian += layer.log_det_jacobian(x)
+            x, ldj = layer(x)
+            log_det_jacobian += ldj
         return x, log_det_jacobian
+    
+    def forward_log_prob(self, x):
+        z, ldj = self.forward(x)
+        ldj += torch.sum(self.latent_distribution.log_prob(z), dim=-1)
+        return z, ldj
 
     def inverse(self, y):
         """
@@ -57,8 +59,6 @@ class NormalizingFlow(nn.Module):
         Returns:
             Tensor: Original tensor.
         """
-        if self.inverse_transform:
-            y = self.inverse_transform(y)
         for layer in reversed(self.layers):
             y = layer.inverse(y)
         return y

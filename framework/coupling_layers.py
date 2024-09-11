@@ -12,7 +12,7 @@ class AdditiveCouplingLayer(BaseCouplingLayer):
         x1, x2 = self.chunker(x)
         y1 = x1
         y2 = x2 + self.coupling_function(x1)
-        return self.chunker.invert(y1, y2)
+        return self.chunker.invert(y1, y2), torch.zeros(x.size(0), device=x.device)
     
     def inverse(self, y):
         y1, y2 = self.chunker(y)
@@ -32,7 +32,7 @@ class ScalingCouplingLayer(BaseCouplingLayer):
 
     def forward(self, x):
         scale = torch.exp(self.log_scaling_factors)
-        return x * scale
+        return x * scale, self.log_scaling_factors.sum(dim=0).repeat(x.size(0))
     
     def inverse(self, y):
         scale = torch.exp(-self.log_scaling_factors)

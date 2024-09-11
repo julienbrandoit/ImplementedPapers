@@ -28,6 +28,7 @@ class BaseCouplingLayer(nn.Module, abc.ABC):
 
         Returns:
             Tensor: Transformed tensor back to the original space.
+            Scalar: Log determinant of the Jacobian matrix.
         """
         pass
 
@@ -44,7 +45,9 @@ class BaseCouplingLayer(nn.Module, abc.ABC):
         """
         pass
 
-class BaseChunker(abc.ABC):
+
+class BaseChunker(nn.Module, abc.ABC):
+    
     @abc.abstractmethod
     def forward(self, x):
         """
@@ -55,19 +58,6 @@ class BaseChunker(abc.ABC):
 
         Returns:
             Tuple[Tensor, Tensor]: Tuple of chunks.
-        """
-        pass
-    
-    @abc.abstractmethod
-    def inverse(self, y):
-        """
-        Combine chunks back into a single tensor.
-
-        Args:
-            y (Tuple[Tensor, Tensor]): Tuple of chunks.
-
-        Returns:
-            Tensor: Combined tensor.
         """
         pass
     
