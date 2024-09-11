@@ -10,6 +10,8 @@ Welcome to the **Implemented Papers** repository! This is where I re-create rese
 - Create modular, reusable code that serves as both a learning tool and a practical resource.
 - Build a personal framework with classes and utilities that reflect modern research.
 
+*Note*: Although I'm coding everything from scratch to deepen my understanding and experience, I occasionally use coding assistants such as ChatGPT and GitHub Copilot. These tools help ensure that the documentation for functions in the framework remains consistent and well-organized.
+
 ## Features
 
 - **Re-Implementations**: Code for various deep learning papers and numerical methods.

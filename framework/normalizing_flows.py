@@ -10,8 +10,6 @@ class NormalizingFlow(nn.Module):
             layers (list of nn.Module): List of coupling layers to stack in the flow.
             latent_dim (int): Dimensionality of the latent space.
             latent_distribution (torch.distributions.Distribution): Latent space distribution.
-            forward_transform (callable, optional): Function for the forward transformation of the input.
-            inverse_transform (callable, optional): Function for the inverse transformation of the output.
             device (str, optional): Device to run the model on ('cpu' or 'cuda'). If None, use available device.
         """
         super(NormalizingFlow, self).__init__()
@@ -45,6 +43,15 @@ class NormalizingFlow(nn.Module):
         return x, log_det_jacobian
     
     def forward_log_prob(self, x):
+        """
+        Compute the log probability of the input after transformation.
+        
+        Args:
+            x (Tensor): Input tensor.
+        
+        Returns:
+            Tuple[Tensor, Tensor]: Transformed tensor and the log probability.
+        """
         z, ldj = self.forward(x)
         ldj += torch.sum(self.latent_distribution.log_prob(z), dim=-1)
         return z, ldj
