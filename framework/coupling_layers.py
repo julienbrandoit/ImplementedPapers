@@ -469,3 +469,39 @@ class BatchNormCouplingLayer(BaseCouplingLayer):
     def log_det_jacobian(self, x):
         var = self.avg_var.view(1, -1, 1, 1)
         return -0.5 * torch.sum(torch.log(var + self.eps), dim=(1, 2, 3)) + 0.5 * torch.log(self.eps) * x.numel() / x.size(1)
+
+class AffineCouplingLayer(BaseCouplingLayer):
+    def __init__(self, coupling_function, chunker, should_mask = True):
+        super(AffineCouplingLayer, self).__init__()
+        self.coupling_function = coupling_function
+        self.chunker = chunker
+        self.should_mask = should_mask
+
+    def forward(self, x):
+        x1, x2 = self.chunker(x)
+
+        scale, shift = self.coupling_function(x1).chunk(2, dim=1)
+        y1 = x1
+        y2 = x2*torch.exp(scale) + shift
+        
+        if self.should_mask:
+            _, masked_scale = self.chunker(scale)
+        else :
+            masked_scale = scale
+        return self.chunker.invert(y1, y2), masked_scale.view(x.size(0), -1).sum(dim=1)
+    
+    def inverse(self, y):
+        y1, y2 = self.chunker(y)
+        scale, shift = self.coupling_function(y1).chunk(2, dim=1)
+        x1 = y1
+        x2 = (y2 - shift)*torch.exp(-scale)
+        return self.chunker.invert(x1, x2)
+    
+    def log_det_jacobian(self, x):
+        x1, x2 = self.chunker(x)
+        scale, _ = self.coupling_function(x1).chunk(2, dim=1)
+        if self.should_mask:
+            _, masked_scale = self.chunker(scale)
+        else :
+            masked_scale = scale
+        return masked_scale.view(x.size(0), -1).sum(dim=1)
