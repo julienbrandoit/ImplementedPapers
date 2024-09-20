@@ -10,12 +10,14 @@ class BaseCouplingLayer(nn.Module, abc.ABC):
         super(BaseCouplingLayer, self).__init__()
     
     @abc.abstractmethod
-    def forward(self, x):
+    def forward(self, x, *args, **kwargs):
         """
         Forward pass of the coupling layer.
 
         Args:
             x (Tensor): Input tensor.
+            *args: Additional positional arguments.
+            **kwargs: Additional keyword arguments.
 
         Returns:
             Tensor: Transformed tensor.
@@ -23,12 +25,14 @@ class BaseCouplingLayer(nn.Module, abc.ABC):
         pass
 
     @abc.abstractmethod
-    def inverse(self, y):
+    def inverse(self, y, *args, **kwargs):
         """
         Inverse pass of the coupling layer.
 
         Args:
             y (Tensor): Input tensor in the transformed space.
+            *args: Additional positional arguments.
+            **kwargs: Additional keyword arguments.
 
         Returns:
             Tensor: Transformed tensor back to the original space.
@@ -37,12 +41,14 @@ class BaseCouplingLayer(nn.Module, abc.ABC):
         pass
 
     @abc.abstractmethod
-    def log_det_jacobian(self, x):
+    def log_det_jacobian(self, x, *args, **kwargs):
         """
         Compute the log determinant of the Jacobian of the transformation.
 
         Args:
             x (Tensor): Input tensor.
+            *args: Additional positional arguments.
+            **kwargs: Additional keyword arguments.
 
         Returns:
             Tensor: Log determinant of the Jacobian.

@@ -63,7 +63,7 @@ These tools help ensure coherent naming conventions and function descriptions, f
 
 """
 from .base import BaseCouplingLayer, BaseChunker
-from .coupling_layers import AdditiveCouplingLayer, ScalingCouplingLayer, AffineCouplingLayer, LogitCouplingLayer, SoftLogCouplingLayer, BatchNormCouplingLayer
+from .coupling_layers import AdditiveCouplingLayer, ScalingCouplingLayer, AffineCouplingLayer, LogitCouplingLayer, SoftLogCouplingLayer, BatchNormCouplingLayer, SequentialCouplingLayer, SqueezingCouplingLayer
 from .chunkers import HalfChunker, OddEvenChunker, SpatialCheckerboardChunker, ChannelWiseChunker
 from .normalizing_flows import NormalizingFlow
 from .distributions import Logistic
@@ -80,6 +80,8 @@ __all__ = [
     'HalfChunker',
     'OddEvenChunker',
     'SpatialCheckerboardChunker',
+    'SequentialCouplingLayer',
+    'SqueezingCouplingLayer'
     'ChannelWiseChunker',
     'NormalizingFlow',
     'Logistic'

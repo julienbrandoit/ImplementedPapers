@@ -13,3 +13,6 @@ You might come across cases where I use the framework in some implementations. H
 
 ### How to Track Changes:
 - Since there is no formal versioning system yet, the easiest way to follow the development and updates is by checking the GitHub commit history.
+
+### TO DO
+- I have to do the GLOW part of the framework.

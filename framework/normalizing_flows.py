@@ -23,9 +23,6 @@ class NormalizingFlow(nn.Module):
         self.device = device
         self.to(device)
         
-        self.latent_distribution.loc = self.latent_distribution.loc.to(self.device)
-        self.latent_distribution.scale = self.latent_distribution.scale.to(self.device)
-
     def forward(self, x):
         """
         Perform the forward pass of the normalizing flow.

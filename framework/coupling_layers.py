@@ -479,11 +479,9 @@ class AffineCouplingLayer(BaseCouplingLayer):
 
     def forward(self, x):
         x1, x2 = self.chunker(x)
-
         scale, shift = self.coupling_function(x1).chunk(2, dim=1)
         y1 = x1
         y2 = x2*torch.exp(scale) + shift
-        
         if self.should_mask:
             _, masked_scale = self.chunker(scale)
         else :
