@@ -39,6 +39,12 @@ Here is a list of the papers I've implemented, with links to their respective di
 
 > I re-implemented the GLOW model and reproduced the experiments (conditional and unconditional) on the CIFAR-10 dataset.
 
+4. **[AUTO-ENCODING VARIATIONAL BAYES](papers/auto-encoding_variational_bayes/VAE.md)**, Diederik P. Kingma, Max Welling; 2013; [arXiv](https://arxiv.org/abs/1312.6114)
+
+> Auto-Encoding Variational Bayes (VAE) introduces a deep generative model that combines variational inference with deep learning. VAE aims to learn a latent variable model by maximizing a lower bound on the log marginal likelihood. This approach allows for efficient and scalable learning of complex distributions, making it a popular choice for generative modeling tasks.
+
+> I re-implemented the VAE model and reproduced the experiments on the MNIST dataset using a 20-D latent space. I also compare the score of the Adagrad optimizer (originally used in the paper) with the score of the Adam optimizer. Finally I explore the learned latent space by linear interpolation and decoding.
+
 ... To be continued :-D
 
 ## License
@@ -52,3 +58,4 @@ I plan to do some documentation for the framework. There are many papers I want 
 - Attention Is All You Need - A lot of the building blocks are already on my computer so it should be pretty simple. Also in the [MOzART project](https://github.com/julienbrandoit/INFO8010---MOZART---Generating-Music-with-Transformers).
 - Deep Residual Learning for Image Recognition
 - GUIDED IMAGE GENERATION WITH CONDITIONAL INVERTIBLE NEURAL NETWORKS
+- Neural Ordinary Differential Equations

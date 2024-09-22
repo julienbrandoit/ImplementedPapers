@@ -16,3 +16,4 @@ You might come across cases where I use the framework in some implementations. H
 
 ### TO DO
 - I have to do the GLOW part of the framework.
+- I have to do the VAE part of the framework.
