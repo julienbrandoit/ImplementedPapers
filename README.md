@@ -59,3 +59,4 @@ I plan to do some documentation for the framework. There are many papers I want 
 - Deep Residual Learning for Image Recognition
 - GUIDED IMAGE GENERATION WITH CONDITIONAL INVERTIBLE NEURAL NETWORKS
 - Neural Ordinary Differential Equations
+- Something on active learning (i still have to look for papers)
