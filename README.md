@@ -50,17 +50,17 @@ Here is a list of the papers I've implemented, with links to their respective di
 > PINNs offer a novel framework for incorporating known physical laws, described by nonlinear partial differential equations (PDEs), into neural network architectures. By integrating physics directly into the learning process, PINNs enable data-driven solutions for high-dimensional problems while simultaneously satisfying governing equations. This approach offers a flexible and scalable method for solving complex PDEs by combining data-driven learning with the structure of physical laws.
 
 
-   1. **[(Part I): Data-driven Solutions of Nonlinear Partial Differential Equations](papers/pinn/PINN.md)**, [arXiv](https://arxiv.org/abs/1711.10561)
+- **[(Part I): Data-driven Solutions of Nonlinear Partial Differential Equations](papers/pinn/PINN.md)**, [arXiv](https://arxiv.org/abs/1711.10561)
 
-    > The first part is focused on approximating the solution of a a-priori known PDE. 
+   > The first part is focused on approximating the solution of a a-priori known PDE. 
 
-    > I re-implemented the continuous time approach for solving PDEs. Specifically, I have implemented and extended two key examples:
-    > 1. Burgers' Equation (1D): This example is based on the original problem presented in the paper, and the results closely match the exact solutions.
-    > 2. Heat Equation (1D): A personal experiment that applies the PINN framework to the heat equation, with an error analysis comparing the model’s predictions to the exact analytical solution.
+   > I re-implemented the continuous time approach for solving PDEs. Specifically, I have implemented and extended two key examples:
+   > 1. Burgers' Equation (1D): This example is based on the original problem presented in the paper, and the results closely match the exact solutions.
+   > 2. Heat Equation (1D): A personal experiment that applies the PINN framework to the heat equation, with an error analysis comparing the model’s predictions to the exact analytical solution.
 
-   2. **[(Part II): Data-driven Discovery of Nonlinear Partial Differential Equations](papers/pinn/PINN.md)**, [arXiv](https://arxiv.org/abs/1711.10566)
+- **[(Part II): Data-driven Discovery of Nonlinear Partial Differential Equations](papers/pinn/PINN.md)**, [arXiv](https://arxiv.org/abs/1711.10566)
 
-    > [To be implemented]
+   > [To be implemented]
 
 6. **[ENERGY CONSERVING EXPLICIT LOCAL TIME STEPPING FOR SECOND-ORDER WAVE EQUATIONS](papers/lts_wave_equations/LTS.md)**, *Julien Diaz, Marcus J. Grote*; [DOI](https://doi.org/10.1137/070709414)
 
