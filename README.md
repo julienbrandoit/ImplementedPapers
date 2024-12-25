@@ -47,7 +47,7 @@ Here is a list of the papers I've implemented, with links to their respective di
 
 5. **[PHYSICS INFORMED DEEP LEARNING](papers/pinn/PINN.md)** *Maziar Raissi, Paris Perdikaris, George Em Karniadakis*; 2017;
 
-    > PINNs offer a novel framework for incorporating known physical laws, described by nonlinear partial differential equations (PDEs), into neural network architectures. By integrating physics directly into the learning process, PINNs enable data-driven solutions for high-dimensional problems while simultaneously satisfying governing equations. This approach offers a flexible and scalable method for solving complex PDEs by combining data-driven learning with the structure of physical laws.
+> PINNs offer a novel framework for incorporating known physical laws, described by nonlinear partial differential equations (PDEs), into neural network architectures. By integrating physics directly into the learning process, PINNs enable data-driven solutions for high-dimensional problems while simultaneously satisfying governing equations. This approach offers a flexible and scalable method for solving complex PDEs by combining data-driven learning with the structure of physical laws.
 
 
    1. **[(Part I): Data-driven Solutions of Nonlinear Partial Differential Equations](papers/pinn/PINN.md)**, [arXiv](https://arxiv.org/abs/1711.10561)
